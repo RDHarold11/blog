@@ -1,31 +1,52 @@
 import React from "react";
 import { BsCalendar2Date } from "react-icons/bs";
-import { AiOutlineArrowRight } from "react-icons/ai";
+import { Link } from "react-router-dom";
+const Article = ({
+  createdAt,
+  category,
+  description,
+  picture,
+  title,
+  userName,
+  _id,
+}) => {
 
-const Article = () => {
+  const image = "http://localhost:5500/images/"
   return (
     <div className="max-w-[300px]">
       <div>
         <img
-          src="https://img.freepik.com/vector-gratis/aguacate-lindo-ilustracion-icono-dibujos-animados-tabla-surf-icono-vacaciones-comida-aislado-estilo-dibujos-animados-plana_138676-3111.jpg?size=626&ext=jpg&ga=GA1.1.847048680.1686597033&semt=sph"
+          src={picture && image + picture}
           alt="article img"
-          className="rounded"
+          className="rounded max-w-[100%]"
         />
       </div>
       <div>
-        <h5 className="text-[#0029FF] mt-2">Digital Marketing</h5>
+        <Link to="category/marketing">
+          <h5 className="text-[#0029FF] mt-2 hover:underline">{category}</h5>
+        </Link>
         <h3 className="text-xl font-bold mt-2 hover:underline cursor-pointer">
-          Best Digital Marketing Strategies You should be Using
+          <Link to={`blog/${_id}`} className="capitalize">
+            {title}
+          </Link>
         </h3>
-        <p className="my-3">
-          It has survived not only five centuries, but also the leap into
-          electronic typesetting, remaning es...{" "}
-          <span className="text-[#0029FF] text-[15px]">Read More</span>
+        <p className="my-3 capitalize">
+          {description}
+          <Link className="ml-2" to={`blog/${_id}`}>
+            <span className="text-[#0029FF] text-[15px] hover:underline">
+              Read More
+            </span>
+          </Link>
         </p>
       </div>
-      <footer className="border-t flex gap-2 items-center justify-start py-2">
-        <BsCalendar2Date />
-        <p>15-11-2003</p>
+      <footer className="border-t flex gap-2 flex-col py-2">
+        <div className="flex gap-2 items-center">
+          <BsCalendar2Date />
+          <p>{new Date(createdAt).toLocaleString()}</p>
+        </div>
+        <Link to={`userPost/${userName}`}>
+          <p className="capitalize hover:underline">Autor: {userName}</p>
+        </Link>
       </footer>
     </div>
   );

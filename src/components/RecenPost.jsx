@@ -1,9 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { AiOutlineArrowRight } from "react-icons/ai";
+import { Link } from "react-router-dom";
+import axios from "axios";
 
 const RecenPost = () => {
+  const [recentPost, setRecentPost] = useState([]);
+
+  const getLastPost = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:5500/api/articles/lastArticle"
+      );
+      setRecentPost(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    getLastPost();
+  }, []);
   return (
-    <div className="pt-[100px] md:pt-[40px] max-w-[1400px] mx-auto px-[80px]  pb-[100px] bg-[#F6F6FF]">
+    <div className=" pt-[100px] md:pt-[40px] max-w-[1400px] mx-auto px-[80px]  pb-[100px] bg-[#F6F6FF]">
       <h2 className="text-gray-900 font-semibold mb-3 text-[20px] line">
         Recent Post:
       </h2>
@@ -25,9 +42,11 @@ const RecenPost = () => {
             <h2 className="font-bold text-[25px] md:text-[30px] my-3 max-w-[440px] line-h ">
               Important Features to look for in Web Development Services
             </h2>
-            <button className="bg-[#0029FF] text-[#fff] px-5 py-3 rounded-full text-[14px] shadow-lg flex items-center gap-2">
-              Read more <AiOutlineArrowRight size={20} />
-            </button>
+            <Link to="blog/2">
+              <button className="bg-[#0029FF] text-[#fff] px-5 py-3 rounded-full text-[14px] shadow-lg flex items-center gap-2">
+                Read more <AiOutlineArrowRight size={20} />
+              </button>
+            </Link>
             <div className="w-full bg-gray-200 rounded-full h-1 dark:bg-gray-200 my-5">
               <div
                 className="bg-blue-600 h-1 rounded-full"
@@ -53,10 +72,12 @@ const RecenPost = () => {
                     2 day ago
                   </h2>
                 </div>
-                <p className="text-[20px] font-bold">
-                  <span>Digital Marketing </span> in India: What to Expect in
-                  2023?
-                </p>
+                <Link to="blog/2">
+                  <p className="text-[20px] font-bold hover:underline">
+                    <span>Digital Marketing </span> in India: What to Expect in
+                    2023?
+                  </p>
+                </Link>
               </div>
             </div>
           </div>
