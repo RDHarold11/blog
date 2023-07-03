@@ -1,6 +1,10 @@
 import { useState } from 'react'
 import Home from './pages/Home'
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom"
+import {ToastContainer} from "react-toastify"
+import 'react-toastify/dist/ReactToastify.css';
+
+
 import Login from "./pages/Login"
 import Register from "./pages/Register"
 import SingleBlog from "./pages/SingleBlog"
@@ -10,8 +14,6 @@ import SharedLayout from './pages/SharedLayout'
 import NotFound from './pages/NotFound'
 import UserPosts from './pages/UserPosts'
 
-import {ToastContainer} from "react-toastify"
-import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (

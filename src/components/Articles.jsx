@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useLayoutEffect, useState } from 'react'
 import Article from './Article'
 import axios from "axios"
 
@@ -13,13 +13,13 @@ const Articles = () => {
       console.log(error)
     }
   }
-
-  useEffect(() => {
+  useLayoutEffect(() => {
     fetchArticles()
   }, [])
+
   return (
     <section className='max-w-[1400px] px-[80px] mx-auto bg-[#F6F6FF]'>
-        <h2 className='text-xl mb-3 font-semibold'>Must Read Articles: </h2>
+        <h2 className='text-[18px] mb-3 font-semibold'>Must Read Articles: </h2>
         <div className='grid lg:grid-cols-4 gap-6 w-full items-center justify-center sm:grid-cols-2'>
           {
             articles.length > 0 && (
@@ -28,7 +28,6 @@ const Articles = () => {
               ))
             )
           }
-
         </div>
     </section>
   )

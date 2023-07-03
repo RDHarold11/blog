@@ -26,10 +26,10 @@ const MyBlogs = () => {
     };
   }, [user, isError, message, dispatch]);
   return (
-    <div className="max-w-[1400px] mx-auto">
+    <div className={isLoading ? "animate-pulse" : "max-w-[1400px] mx-auto"}>
       <div className="pt-10 px-5">
         <div>
-          <p className="mb-2">Hola, {user?.name}. </p>
+          <p className="mb-2 font-semibold text-md">Hola, <span className="text-[#0029ff] capitalize">{user?.name}.</span> </p>
           <h2 className="pb-5 font-semibold text-[17px]">
             Puedes editar y eliminar tus blogs.
           </h2>

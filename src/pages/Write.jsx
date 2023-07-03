@@ -5,21 +5,27 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import {
+  AiFillEye,
+  AiFillEyeInvisible,
+  AiFillCloseCircle,
+} from "react-icons/ai";
 
 const Write = () => {
   const [file, setFile] = useState(null);
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
+  const [toggleImage, setToggleImage] = useState(false);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.auth);
 
   const onSubmit = async (e) => {
-    e.preventDefault()
-    if(!title || !file || !category || !description){
-      toast.error("Debe completar todos los campos")
+    e.preventDefault();
+    if (!title || !file || !category || !description) {
+      toast.error("Debe completar todos los campos");
     }
     const newData = {
       title,
@@ -37,7 +43,10 @@ const Write = () => {
         await axios.post("http://localhost:5500/api/upload/", data);
       } catch (error) {}
     }
+  };
 
+  const handleToggle = () => {
+    setToggleImage(!toggleImage);
   };
 
   useEffect(() => {
@@ -48,17 +57,28 @@ const Write = () => {
 
   return (
     <>
+      <div
+        className={
+          toggleImage
+            ? "fixed h-[300px] max-w-[700px] mx-auto top-10 left-0 right-0 bottom-0 rounded"
+            : "hidden"
+        }
+      >
+        <div onClick={() => setToggleImage(false)}>
+          <AiFillCloseCircle color="black" size={40} cursor="pointer" />
+        </div>
+        <div className=" mx-auto py-3 w-full">
+          {file && toggleImage && (
+            <img
+              src={URL.createObjectURL(file)}
+              alt="write img"
+              className="h-[300px] rounded w-full"
+            />
+          )}
+        </div>
+      </div>
       <div className="max-w-[1300px] mx-auto h-screen">
-        <div className="max-w-[600px] mx-auto  h-[600px] shadow-xl">
-          <div className=" mx-auto py-3 w-full">
-            {/* {file && (
-              <img
-                src={URL.createObjectURL(file)}
-                alt="write img"
-                className="h-[300px] rounded w-full"
-              />
-            )} */}
-          </div>
+        <div className="max-w-[600px] mx-auto  h-[550px] shadow-xl">
           <div className="md:w-full pt-5 pb-5 px-5">
             <form action="" onSubmit={onSubmit}>
               <div className="mb-5">
@@ -74,9 +94,18 @@ const Write = () => {
                 />
               </div>
               <div className="mb-5">
-                <label htmlFor="" className="block font-semibold">
-                  Picture
-                </label>
+                <div className="flex items-center justify-between">
+                  <label htmlFor="" className="block font-semibold">
+                    Picture
+                  </label>
+                  <div onClick={handleToggle}>
+                    {toggleImage ? (
+                      <AiFillEye size={25} cursor="pointer" />
+                    ) : (
+                      <AiFillEyeInvisible size={25} cursor="pointer" />
+                    )}
+                  </div>
+                </div>
                 <input
                   type="file"
                   onChange={(e) => setFile(e.target.files[0])}
@@ -89,7 +118,7 @@ const Write = () => {
                   Category
                 </label>
                 <select
-                  className="w-full border-b border-b-gray-500"
+                  className="w-full border-b py-2 px-1 border-b-gray-500"
                   onChange={(e) => setCategory(e.target.value)}
                   value={category}
                 >
