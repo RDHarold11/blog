@@ -5,11 +5,12 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import { Fade } from "react-awesome-reveal";
 
+import Loading from "./Loading";
+
 const RecenPost = () => {
   const [recentPost, setRecentPost] = useState([]);
-
+  
   const { isLoading } = useSelector((state) => state.articles);
-
   const getLastPost = async () => {
     try {
       const response = await axios.get(
@@ -20,9 +21,16 @@ const RecenPost = () => {
       console.log(error);
     }
   };
+
   useEffect(() => {
     getLastPost();
   }, []);
+
+  if(isLoading){
+    return <Loading/>
+  }
+
+  const image = "http://localhost:5500/images/";
   return (
     <Fade>
       <div
@@ -38,8 +46,8 @@ const RecenPost = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-20">
           <div className="max-w-[100%] ">
             <img
-              className="rounded-sm w-[100%]"
-              src="https://images.unsplash.com/photo-1580234811497-9df7fd2f357e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGdhbWluZ3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60"
+              className="rounded-sm w-[100%] md:h-[360px]"
+              src={image + recentPost[0]?.picture}
               alt=""
             />
           </div>
@@ -47,13 +55,14 @@ const RecenPost = () => {
             <div className="">
               <div className="flex gap-6">
                 <span>01.</span>
-                <p className="text-[#0029FF]">Development</p>
-                <span>2hr ago</span>
+                <p className="text-[#0029FF]">{recentPost[0]?.category}</p>
+                <span>{new Date(recentPost[0]?.createdAt).toLocaleString()}</span>
               </div>
               <h2 className="font-bold text-[25px] md:text-[30px] my-3 max-w-[440px] line-h ">
-                Important Features to look for in Web Development Services
+                {recentPost[0]?.title}
               </h2>
-              <Link to="blog/2">
+              <p className="my-3 pl-1">{recentPost[0]?.description.slice(0, 20)}</p>
+              <Link to={`blog/${recentPost[0]?._id}`}>
                 <button className="bg-[#0029FF] text-[#fff] px-5 py-3 rounded-full text-[14px] shadow-lg flex items-center gap-2">
                   Read more <AiOutlineArrowRight size={20} />
                 </button>
@@ -69,7 +78,7 @@ const RecenPost = () => {
               <div className="flex flex-col lg:flex-row  gap-6 mt-7">
                 <div className="md:max-w-[140px]">
                   <img
-                    src="https://images.unsplash.com/photo-1548484352-ea579e5233a8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fGdhbWluZ3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60"
+                    src={image + recentPost[1]?.picture}
                     alt=""
                     className="rounded"
                   />
@@ -78,17 +87,17 @@ const RecenPost = () => {
                   <div className="mb-1">
                     <h2>
                       <span className="text-[#0029FF] mr-2">
-                        02. Digital Marketing
+                        02. {recentPost[1]?.category1}
                       </span>{" "}
-                      2 day ago
+                      {new Date(recentPost[1]?.createdAt).toLocaleString()}
                     </h2>
                   </div>
-                  <Link to="blog/2">
-                    <p className="text-[20px] font-bold hover:underline">
-                      <span>Digital Marketing </span> in India: What to Expect
-                      in 2023?
-                    </p>
+                  <Link to={`blog/${recentPost[1]?._id}`}>
+                    <h2 className="text-[20px] font-bold hover:underline">
+                      {recentPost[1]?.title}
+                    </h2>
                   </Link>
+                  <p>{recentPost[1]?.description.slice(0, 30)}</p>
                 </div>
               </div>
             </div>

@@ -49,8 +49,8 @@ const Articles = () => {
           >
             {articles.length > 0 &&
               articles?.map((article) => (
-                <SwiperSlide>
-                  <Article key={article._id} {...article}></Article>
+                <SwiperSlide key={article._id}>
+                  <Article {...article}></Article>
                 </SwiperSlide>
               ))}
           </Swiper>
