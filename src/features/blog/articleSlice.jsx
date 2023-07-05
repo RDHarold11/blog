@@ -51,7 +51,8 @@ export const articleSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(createArticle.fulfilled, (state, action) => {
-        (state.isSuccess = true), (state.isLoading = false);
+        state.isSuccess = true 
+        state.isLoading = false;
         state.articles.push(action.payload);
       })
       .addCase(createArticle.rejected, (state, action) => {

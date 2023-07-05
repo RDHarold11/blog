@@ -17,6 +17,7 @@ const Write = () => {
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
   const [toggleImage, setToggleImage] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -39,6 +40,7 @@ const Write = () => {
       data.append("file", file);
       newData.picture = fileName;
       dispatch(createArticle(newData));
+      setSuccess(true);
       try {
         await axios.post("http://localhost:5500/api/upload/", data);
       } catch (error) {}
@@ -50,10 +52,13 @@ const Write = () => {
   };
 
   useEffect(() => {
+    if (success) {
+      toast.success("Agregaste un nuevo articulo.");
+    }
     if (!user) {
       navigate("/");
     }
-  }, [user]);
+  }, [user, success]);
 
   return (
     <>

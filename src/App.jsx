@@ -13,7 +13,7 @@ import Write from './pages/Write'
 import SharedLayout from './pages/SharedLayout'
 import NotFound from './pages/NotFound'
 import UserPosts from './pages/UserPosts'
-
+import Posts from './pages/Posts';
 
 function App() {
   return (
@@ -27,6 +27,7 @@ function App() {
           <Route path="myBlogs" element={<MyBlogs/>}></Route>
           <Route path="write" element={<Write/>}></Route>
           <Route path='userPost/:name' element={<UserPosts/>}></Route>
+          <Route path='post' element={<Posts/>}></Route>
         </Route>
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='/register' element={<Register></Register>}></Route>

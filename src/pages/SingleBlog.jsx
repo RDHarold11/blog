@@ -33,10 +33,10 @@ const SingleBlog = () => {
             <img
               src={image + picture}
               alt="article img"
-              className="rounded w-[100%] mx-auto md:w-[980px] md:h-[450px]"
+              className="rounded w-[100%] mx-auto md:w-[800px] md:h-[400px]"
             />
           </div>
-          <div className="md:flex-[80%] px-5 pt-5">
+          <div className="md:flex-[80%] px-5 text-justify pt-5">
             <h5 className="text-[#0029FF] mt-2 font-semibold text-center">
               {category}
             </h5>
