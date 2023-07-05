@@ -9,13 +9,14 @@ import Loading from "./Loading";
 
 const RecenPost = () => {
   const [recentPost, setRecentPost] = useState([]);
+  const [loading, setLoading] = useState(true)
   
-  const { isLoading } = useSelector((state) => state.articles);
   const getLastPost = async () => {
     try {
       const response = await axios.get(
         "http://localhost:5500/api/articles/lastArticle"
       );
+      setLoading(false)
       setRecentPost(response.data);
     } catch (error) {
       console.log(error);
@@ -26,19 +27,16 @@ const RecenPost = () => {
     getLastPost();
   }, []);
 
-  if(isLoading){
+  if(loading){
     return <Loading/>
   }
+
 
   const image = "http://localhost:5500/images/";
   return (
     <Fade>
       <div
-        className={
-          isLoading
-            ? "animate-pulse"
-            : " pt-[100px] md:pt-[40px] max-w-[1400px] mx-auto px-[80px]  pb-[100px] bg-[#F6F6FF]"
-        }
+        className=" pt-[100px] md:pt-[40px] max-w-[1400px] mx-auto px-[80px]  pb-[100px] bg-[#F6F6FF]"
       >
         <h2 className="text-gray-900 font-semibold mb-3 text-[20px] line">
           Recent Post:
@@ -47,7 +45,7 @@ const RecenPost = () => {
           <div className="max-w-[100%] ">
             <img
               className="rounded-sm w-[100%] md:h-[360px]"
-              src={image + recentPost[0]?.picture}
+              src={image && image + recentPost[0]?.picture}
               alt=""
             />
           </div>
@@ -78,7 +76,7 @@ const RecenPost = () => {
               <div className="flex flex-col lg:flex-row  gap-6 mt-7">
                 <div className="md:max-w-[140px]">
                   <img
-                    src={image + recentPost[1]?.picture}
+                    src={image && image + recentPost[1]?.picture}
                     alt=""
                     className="rounded"
                   />

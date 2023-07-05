@@ -31,7 +31,7 @@ const Articles = () => {
         <div className="">
           <Swiper
             slidesPerView={4}
-            spaceBetween={20}
+            spaceBetween={25}
             breakpoints={{
               360: {
                 spaceBetween: 10,
