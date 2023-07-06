@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { useSelector } from "react-redux";
 import { Fade } from "react-awesome-reveal";
 
 import Loading from "./Loading";
@@ -34,7 +33,7 @@ const RecenPost = () => {
 
   const image = "http://localhost:5500/images/";
   return (
-    <Fade>
+    <Fade cascade>
       <div
         className=" pt-[100px] md:pt-[40px] max-w-[1400px] mx-auto px-[80px]  pb-[100px] bg-[#F6F6FF]"
       >
@@ -84,8 +83,9 @@ const RecenPost = () => {
                 <div>
                   <div className="mb-1">
                     <h2>
-                      <span className="text-[#0029FF] mr-2">
-                        02. {recentPost[1]?.category1}
+                      02.
+                      <span className="text-[#0029FF] ml-2 mr-2">
+                        {recentPost[1]?.category}
                       </span>{" "}
                       {new Date(recentPost[1]?.createdAt).toLocaleString()}
                     </h2>
@@ -95,7 +95,7 @@ const RecenPost = () => {
                       {recentPost[1]?.title}
                     </h2>
                   </Link>
-                  <p>{recentPost[1]?.description.slice(0, 30)}</p>
+                  <p>{recentPost[1]?.description.slice(0, 30)}...</p>
                 </div>
               </div>
             </div>
