@@ -39,6 +39,16 @@ export const deleteArticle = createAsyncThunk("articles/deleteArticle", async (i
   }
 })
 
+export const updateArticle = createAsyncThunk("articles/updateArticle", async ({ id, newArticle }, thunkAPI) => {
+  try {
+    const { title, description, category } = newArticle
+    const token = thunkAPI.getState().auth.user.token
+    return await articleService.updateArticle(id, { title, description, category }, token)
+  } catch (error) {
+    thunkAPI.rejectWithValue(error)
+  }
+})
+
 export const articleSlice = createSlice({
   name: "articles",
   initialState,
@@ -51,7 +61,7 @@ export const articleSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(createArticle.fulfilled, (state, action) => {
-        state.isSuccess = true 
+        state.isSuccess = true
         state.isLoading = false;
         state.articles.push(action.payload);
       })
@@ -82,6 +92,22 @@ export const articleSlice = createSlice({
         state.articles = state.articles.filter((article) => article._id !== action.payload.id)
       })
       .addCase(deleteArticle.rejected, (state, action) => {
+        state.isError = true
+        state.isSuccess = false
+        state.message = action.payload
+      })
+      .addCase(updateArticle.pending, (state) => {
+        state.isLoading = true
+      })
+      .addCase(updateArticle.fulfilled, (state, action) => {
+        state.isLoading = false
+        state.isSuccess = true
+        const update = state.articles.findIndex((article) => article._id == action.payload.id)
+        if (update !== -1) {
+          state.articles[update] = action.payload
+        }
+      })
+      .addCase(updateArticle.rejected, (state, action) => {
         state.isError = true
         state.isSuccess = false
         state.message = action.payload

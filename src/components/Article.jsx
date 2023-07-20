@@ -25,7 +25,7 @@ const Article = ({
           />
         </div>
         <div className="px-3 py-3">
-          <Link to="category/marketing">
+          <Link to={`category/${category}`}>
             <h5 className="text-[#0029FF] mt-2 hover:underline">{category}</h5>
           </Link>
           <h3 className="text-xl font-bold mt-2 hover:underline cursor-pointer">

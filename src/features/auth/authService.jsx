@@ -22,6 +22,9 @@ const login = async (userData) => {
       localStorage.setItem("user", JSON.stringify(response.data));
       return response.data;
     }
+    if (response.status == 400) {
+      toast.error("Error")
+    }
   } catch (error) {
     console.log(error);
   }

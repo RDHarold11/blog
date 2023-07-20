@@ -1,4 +1,4 @@
-import { useState } from 'react'
+
 import Home from './pages/Home'
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom"
 import {ToastContainer} from "react-toastify"
@@ -14,6 +14,7 @@ import SharedLayout from './pages/SharedLayout'
 import NotFound from './pages/NotFound'
 import UserPosts from './pages/UserPosts'
 import Posts from './pages/Posts';
+import Edit from './pages/Edit';
 
 function App() {
   return (
@@ -23,11 +24,11 @@ function App() {
         <Route path='/' element={<SharedLayout/>}>
           <Route index element={<Home></Home>}></Route>
           <Route path='blog/:id' element={<SingleBlog></SingleBlog>}></Route>
-          <Route path='category/:category'></Route>
+          <Route path='category/:category' element={<Posts></Posts>}></Route>
           <Route path="myBlogs" element={<MyBlogs/>}></Route>
           <Route path="write" element={<Write/>}></Route>
           <Route path='userPost/:name' element={<UserPosts/>}></Route>
-          <Route path='post' element={<Posts/>}></Route>
+          <Route path='edit/:id' element={<Edit/>}></Route>
         </Route>
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='/register' element={<Register></Register>}></Route>

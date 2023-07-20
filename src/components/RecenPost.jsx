@@ -37,7 +37,7 @@ const RecenPost = () => {
       <div
         className=" pt-[100px] md:pt-[40px] max-w-[1400px] mx-auto px-[80px]  pb-[100px] bg-[#F6F6FF]"
       >
-        <h2 className="text-gray-900 font-semibold mb-3 text-[20px] line">
+        <h2 className="text-gray-900 font-semibold mb-5 text-[20px] line antes">
           Recent Post:
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-20">
@@ -58,7 +58,7 @@ const RecenPost = () => {
               <h2 className="font-bold text-[25px] md:text-[30px] my-3 max-w-[440px] line-h ">
                 {recentPost[0]?.title}
               </h2>
-              <p className="my-3 pl-1">{recentPost[0]?.description.slice(0, 20)}</p>
+              <p className="my-3 pl-1">{recentPost[0]?.description.slice(0, 20)}...</p>
               <Link to={`blog/${recentPost[0]?._id}`}>
                 <button className="bg-[#0029FF] text-[#fff] px-5 py-3 rounded-full text-[14px] shadow-lg flex items-center gap-2">
                   Read more <AiOutlineArrowRight size={20} />

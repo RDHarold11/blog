@@ -1,10 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import { Fade } from "react-awesome-reveal";
+
 const ArticlesFound = ({ picture, _id, title }) => {
   const image = "http://localhost:5500/images/";
   return (
     <>
+    <Fade>
       <article className="max-w-[100px] h-[200px]">
         <div>
           <div>
@@ -15,6 +18,7 @@ const ArticlesFound = ({ picture, _id, title }) => {
           </Link>
         </div>
       </article>
+    </Fade>
     </>
   );
 };

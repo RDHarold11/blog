@@ -22,7 +22,7 @@ const deleteArticle = async (id, token) => {
     return response.data
 }
 
-const updateArticle = async (id, token, data) => {
+const updateArticle = async (id, data, token) => {
     const config = {
         headers: {
             Authorization: `Bearer ${token}`

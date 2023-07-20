@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Article from "./Article";
 import axios from "axios";
 import "swiper/css";
@@ -37,15 +37,15 @@ const Articles = () => {
     <>
       <section className="max-w-[1400px] h-[700px] px-[80px] mx-auto bg-[#F6F6FF]">
         <div className="flex items-center flex-wrap justify-between pb-5">
-          <h2 className="text-[18px] mb-3 font-semibold">
+          <h2 className="text-[18px] mb-3 font-semibold antes">
             Must Read Articles:{" "}
           </h2>
           <div>
             <label
               htmlFor="countries"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              className="block mb-2 text-sm font-medium text-gray-900"
             >
-              Select an option
+              Select a category
             </label>
             <select
               onChange={(e) => setCategory(e.target.value)}
@@ -82,7 +82,7 @@ const Articles = () => {
             className="myswiper"
           >
             {articles.length > 0 &&
-              articles?.map((article) => (
+              articles?.slice(0, 10).map((article) => (
                 <SwiperSlide key={article._id}>
                   <Article {...article}></Article>
                 </SwiperSlide>

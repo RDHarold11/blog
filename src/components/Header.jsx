@@ -5,7 +5,7 @@ import SearchBar from "./SearchBar";
 const Header = () => {
   return (
     <Fade>
-      <div className="pt-10 max-w-[1400px] px-[80px] mx-auto bg-[#F6F6FF] h-[1100px] lg:h-[600px]">
+      <div className="pt-10 max-w-[1400px] px-[80px] mx-auto bg-[#F6F6FF] h-[1100px] lg:h-[540px]">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 items-center justify-between mb-10">
           <div className="col-span-2">
             <h4>

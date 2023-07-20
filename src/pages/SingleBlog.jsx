@@ -3,9 +3,11 @@ import React, { useEffect, useState } from "react";
 import { BsCalendar2Date } from "react-icons/bs";
 import { useParams } from "react-router-dom";
 import { Fade } from "react-awesome-reveal";
+import Loading from "../components/Loading";
 
 const SingleBlog = () => {
   const [singleBlog, setSingleBlog] = useState({});
+  const [loading, setLoading] = useState(true)
 
   const { id } = useParams();
   const fetchBlog = async () => {
@@ -13,6 +15,7 @@ const SingleBlog = () => {
       const res = await axios.get(
         `http://localhost:5500/api/articles/articleId/${id}`
       );
+      setLoading(false)
       setSingleBlog(res.data);
     } catch (error) {
       console.log(error);
@@ -21,10 +24,14 @@ const SingleBlog = () => {
   const { category, createdAt, picture, title, userName, _id, description } =
     singleBlog;
   const image = "http://localhost:5500/images/";
+
   useEffect(() => {
     fetchBlog();
   }, [id]);
 
+  if(loading){
+    return <Loading/>
+  }
   return (
     <Fade>
       <div className=" mx-auto flex items-center justify-center py-10">

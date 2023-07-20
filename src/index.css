@@ -22,3 +22,9 @@ body {
   flex-wrap: wrap;
   align-items: center;
 }
+
+.antes::before {
+  content: "";
+  margin-right: 10px;
+  border: 2px solid #384ffe;
+}

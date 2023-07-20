@@ -1,15 +1,13 @@
-import React from "react";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import { deleteArticle } from "../features/blog/articleSlice";
 import { Fade } from "react-awesome-reveal";
+import { useAppDispatch } from "../hooks/store";
 
 const Blogs = ({ articles }) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const deleteArticles = (id) => {
     dispatch(deleteArticle(id));
-    window.location.reload();
   };
 
   return (
@@ -37,7 +35,7 @@ const Blogs = ({ articles }) => {
               </tr>
             </thead>
             <tbody>
-              {articles.map((article) => (
+              {articles?.map((article) => (
                 <tr key={article._id}>
                   <>
                     <td
@@ -51,12 +49,8 @@ const Blogs = ({ articles }) => {
                       {article.description.slice(0, 70)}...
                     </td>
                     <td className="px-6 py-4">
-                      <a
-                        href="#"
-                        className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                      >
-                        Edit
-                      </a>
+                      <Link className="dark:text-blue-500 hover:underline font-medium" to={`/edit/${article._id}`}>Edit</Link>
+
                       <a
                         onClick={() => deleteArticles(article._id)}
                         href="#"
