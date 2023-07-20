@@ -10,7 +10,7 @@ const UserPosts = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:5500/api/articles/user/${name}`
+        `https://blog-api-i1y5.onrender.com/api/articles/user/${name}`
       );
       SetPosts(response.data);
     } catch (error) {

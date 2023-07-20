@@ -9,11 +9,11 @@ import Loading from "./Loading";
 const RecenPost = () => {
   const [recentPost, setRecentPost] = useState([]);
   const [loading, setLoading] = useState(true)
-  
+
   const getLastPost = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5500/api/articles/lastArticle"
+        "https://blog-api-i1y5.onrender.com/api/articles/lastArticle"
       );
       setLoading(false)
       setRecentPost(response.data);
@@ -26,12 +26,12 @@ const RecenPost = () => {
     getLastPost();
   }, []);
 
-  if(loading){
-    return <Loading/>
+  if (loading) {
+    return <Loading />
   }
 
 
-  const image = "http://localhost:5500/images/";
+  const image = "https://blog-api-i1y5.onrender.com/images/";
   return (
     <Fade cascade>
       <div

@@ -2,7 +2,7 @@ import React from "react";
 import { BsCalendar2Date } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { Fade } from "react-awesome-reveal";
-import {RxAvatar} from "react-icons/rx"
+import { RxAvatar } from "react-icons/rx"
 
 const Article = ({
   createdAt,
@@ -13,7 +13,7 @@ const Article = ({
   userName,
   _id,
 }) => {
-  const image = "http://localhost:5500/images/";
+  const image = "https://blog-api-i1y5.onrender.com/images/";
   return (
     <Fade>
       <div className="max-w-[330px] shadow-2xl mb-[45px] rounded">
@@ -47,8 +47,8 @@ const Article = ({
             <BsCalendar2Date />
             <p>{new Date(createdAt).toLocaleString()}</p>
           </div>
-          <Link to={`userPost/${userName}`} className="flex items-center gap-1"> 
-            <RxAvatar size={20}/>
+          <Link to={`userPost/${userName}`} className="flex items-center gap-1">
+            <RxAvatar size={20} />
             <p className="capitalize hover:underline">Autor: {userName}</p>
           </Link>
         </footer>

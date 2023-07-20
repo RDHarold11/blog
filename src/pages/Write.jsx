@@ -42,8 +42,8 @@ const Write = () => {
       dispatch(createArticle(newData));
       setSuccess(true);
       try {
-        await axios.post("http://localhost:5500/api/upload/", data);
-      } catch (error) {}
+        await axios.post("https://blog-api-i1y5.onrender.com/api/upload/", data);
+      } catch (error) { }
     }
   };
 

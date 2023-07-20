@@ -1,7 +1,7 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 
-const API_URL = "http://localhost:5500/api/users/";
+const API_URL = "https://blog-api-i1y5.onrender.com/api/users/";
 
 const register = async (userData) => {
   try {

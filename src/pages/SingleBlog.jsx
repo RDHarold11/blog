@@ -13,7 +13,7 @@ const SingleBlog = () => {
   const fetchBlog = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:5500/api/articles/articleId/${id}`
+        `https://blog-api-i1y5.onrender.com/api/articles/articleId/${id}`
       );
       setLoading(false)
       setSingleBlog(res.data);
@@ -23,14 +23,14 @@ const SingleBlog = () => {
   };
   const { category, createdAt, picture, title, userName, _id, description } =
     singleBlog;
-  const image = "http://localhost:5500/images/";
+  const image = "https://blog-api-i1y5.onrender.com/images/";
 
   useEffect(() => {
     fetchBlog();
   }, [id]);
 
-  if(loading){
-    return <Loading/>
+  if (loading) {
+    return <Loading />
   }
   return (
     <Fade>

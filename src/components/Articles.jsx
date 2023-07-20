@@ -16,12 +16,12 @@ const Articles = () => {
     try {
       if (category === "All") {
         const res = await axios.get(
-          `http://localhost:5500/api/articles/getArticles/`
+          `https://blog-api-i1y5.onrender.com/api/articles/getArticles/`
         );
         setArticles(res.data);
       } else {
         const res = await axios.get(
-          `http://localhost:5500/api/articles/getArticles/?category=${category}`
+          `https://blog-api-i1y5.onrender.com/api/articles/getArticles/?category=${category}`
         );
         setArticles(res.data);
       }
