@@ -96,10 +96,10 @@ const Navbar = () => {
               >
                 Home
               </Link>
-              <Link className="text-[#fff] border-b w-full pb-4 font-semibold text-[15px] pr-3 hover:underline hover:text-[#0029FF] cursor-pointer">
+              <Link to="/write" className="text-[#fff] border-b w-full pb-4 font-semibold text-[15px] pr-3 hover:underline hover:text-[#0029FF] cursor-pointer">
                 Write
               </Link>
-              <Link className="text-[#fff] border-b w-full pb-4 ont-semibold text-[15px] pr-3 hover:underline hover:text-[#0029FF] cursor-pointer">
+              <Link to="/myBlogs" className="text-[#fff] border-b w-full pb-4 ont-semibold text-[15px] pr-3 hover:underline hover:text-[#0029FF] cursor-pointer">
                 My Blogs
               </Link>
               <Link
