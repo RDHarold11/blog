@@ -14,7 +14,7 @@ const Autores = () => {
   const fetchData = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:5500/api/articles/getArticles/"
+        "https://blog-api-i1y5.onrender.com/api/articles/getArticles/"
       );
       setLoading(false);
       setArticles(res.data);
